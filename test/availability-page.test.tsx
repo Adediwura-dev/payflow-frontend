@@ -39,7 +39,8 @@ it("shows available seats and a relative cutoff", async () => {
   mocks.plans.mockResolvedValue({ plans: [plan({ max_subscribers: 5, subscriber_count: 2, available_until: Math.floor(Date.now()/1000) + 86400 })] });
   render(<SubscribePage />);
   expect(await screen.findByText("3 seats left")).toBeTruthy();
-  expect(screen.getByText(/in 1d/)).toBeTruthy();
+  // Issue #45 spells relative times out; the cutoff is a day away.
+  expect(screen.getByText(/in 1 day/)).toBeTruthy();
 });
 it("leaves legacy/unlimited plans unchanged", async () => {
   mocks.plans.mockResolvedValue({ plans: [plan(), plan({ id: 2, name: "Unlimited", max_subscribers: 0, available_until: 0 })] });

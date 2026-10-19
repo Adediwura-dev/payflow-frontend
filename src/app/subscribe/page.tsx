@@ -11,7 +11,7 @@ import { formatDate, formatWhen, formatPeriod, fromStroops } from "@/lib/format"
 import { formatTrialLength, trialBadge, trialSeconds } from "@/lib/trial";
 import { planAvailability } from "@/lib/availability";
 import { metaFor, useTokenMetas } from "@/lib/token";
-import { AddressLink, Empty, Notice, Panel, SkeletonPlanCards, TxLink } from "@/components/ui";
+import { Empty, MerchantAccount, Notice, Panel, SkeletonPlanCards, TxLink } from "@/components/ui";
 
 export default function SubscribePage() {
   const { address, networkMismatch, signXdr } = useWallet();
@@ -204,9 +204,9 @@ export default function SubscribePage() {
                   <p id={`availability-${plan.id}`} className="text-sm text-muted">{availability.reason}</p>
                 )}
 
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between gap-2 text-sm">
                   <span className="text-muted">Merchant</span>
-                  <AddressLink value={plan.merchant} />
+                  <MerchantAccount value={plan.merchant} />
                 </div>
 
                 <div>
